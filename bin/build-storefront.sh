@@ -3,7 +3,7 @@
 CWD="$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 
 export PROJECT_ROOT="${PROJECT_ROOT:-"$(dirname "$CWD")"}"
-STOREFRONT_ROOT="${STOREFRONT_ROOT:-"${PROJECT_ROOT}/vendor/shopware/storefront"}"
+STOREFRONT_ROOT="${STOREFRONT_ROOT:-"${PROJECT_ROOT}/vendor/shopware/platform/src/Storefront"}"
 
 # build storefront
 [[ ${CI} ]] || "${CWD}/console" bundle:dump

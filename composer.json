@@ -19,13 +19,9 @@
             "[ ! -f vendor/autoload.php ] || $PHP_BINARY bin/console system:update:prepare"
         ],
         "post-install-cmd": [
-            "@composer install --working-dir vendor/shopware/recovery --no-interaction --no-scripts",
-            "@composer install --working-dir=vendor/shopware/recovery/Common --no-interaction --optimize-autoloader --no-suggest",
             "[ ! -f install.lock ] || $PHP_BINARY bin/console system:update:finish"
         ],
         "post-update-cmd": [
-            "@composer install --working-dir vendor/shopware/recovery --no-interaction --no-scripts",
-            "@composer install --working-dir=vendor/shopware/recovery/Common --no-interaction --optimize-autoloader --no-suggest",
             "[ ! -f install.lock ] || $PHP_BINARY bin/console system:update:finish"
         ]
     },
@@ -48,16 +44,16 @@
             "options": {
                 "symlink": true
             }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/shyim/platform.git"
         }
     ],
     "require": {
         "php": "^7.4.3 || ^8.0",
         "composer-runtime-api": "^2.0",
-        "shopware/administration": "~v6.4.0",
-        "shopware/core": "~v6.4.0",
-        "shopware/elasticsearch": "~v6.4.0",
-        "shopware/recovery": "~v6.4.0",
-        "shopware/storefront": "~v6.4.0"
+        "shopware/platform": "dev-ntr/sw-build-without-db"
     },
     "require-dev": {
         "ext-openssl": "*",

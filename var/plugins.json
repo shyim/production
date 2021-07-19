@@ -1,6 +1,6 @@
 {
     "Framework": {
-        "basePath": "vendor\/shopware\/core\/Framework\/",
+        "basePath": "vendor\/shopware\/platform\/src\/Core\/Framework\/",
         "views": [
             "Resources\/views"
         ],
@@ -18,7 +18,7 @@
         }
     },
     "System": {
-        "basePath": "vendor\/shopware\/core\/System\/",
+        "basePath": "vendor\/shopware\/platform\/src\/Core\/System\/",
         "views": [
             "Resources\/views"
         ],
@@ -36,7 +36,7 @@
         }
     },
     "Content": {
-        "basePath": "vendor\/shopware\/core\/Content\/",
+        "basePath": "vendor\/shopware\/platform\/src\/Core\/Content\/",
         "views": [
             "Resources\/views"
         ],
@@ -54,7 +54,7 @@
         }
     },
     "Checkout": {
-        "basePath": "vendor\/shopware\/core\/Checkout\/",
+        "basePath": "vendor\/shopware\/platform\/src\/Core\/Checkout\/",
         "views": [
             "Resources\/views"
         ],
@@ -71,26 +71,8 @@
             "styleFiles": []
         }
     },
-    "Profiling": {
-        "basePath": "vendor\/shopware\/core\/Profiling\/",
-        "views": [
-            "Resources\/views"
-        ],
-        "technicalName": "profiling",
-        "administration": {
-            "path": "Resources\/app\/administration\/src",
-            "entryFilePath": null,
-            "webpack": null
-        },
-        "storefront": {
-            "path": "Resources\/app\/storefront\/src",
-            "entryFilePath": null,
-            "webpack": null,
-            "styleFiles": []
-        }
-    },
     "Administration": {
-        "basePath": "vendor\/shopware\/administration\/",
+        "basePath": "vendor\/shopware\/platform\/src\/Administration\/",
         "views": [
             "Resources\/views"
         ],
@@ -108,7 +90,7 @@
         }
     },
     "Storefront": {
-        "basePath": "vendor\/shopware\/storefront\/",
+        "basePath": "vendor\/shopware\/platform\/src\/Storefront\/",
         "views": [
             "Resources\/views"
         ],
@@ -123,13 +105,14 @@
             "entryFilePath": "Resources\/app\/storefront\/src\/main.js",
             "webpack": null,
             "styleFiles": [
-                "vendor\/shopware\/storefront\/Resources\/app\/storefront\/src\/scss\/base.scss",
+                "vendor\/shopware\/platform\/src\/Storefront\/Resources\/app\/storefront\/src\/scss\/base.scss",
+                "vendor\/shopware\/platform\/src\/Storefront\/Resources\/app\/storefront\/src\/scss\/skin\/shopware\/_base.scss",
                 "@Plugins"
             ]
         }
     },
     "Elasticsearch": {
-        "basePath": "vendor\/shopware\/elasticsearch\/",
+        "basePath": "vendor\/shopware\/platform\/src\/Elasticsearch\/",
         "views": [
             "Resources\/views"
         ],

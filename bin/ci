@@ -1,0 +1,47 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+use Composer\InstalledVersions;
+use Shopware\Core\Framework\Plugin\KernelPluginLoader\ComposerPluginLoader;
+use Shopware\Production\HttpKernel;
+use Shopware\Production\Kernel;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Dotenv\Dotenv;
+use Symfony\Component\ErrorHandler\Debug;
+
+set_time_limit(0);
+
+$classLoader = require __DIR__ . '/../vendor/autoload.php';
+
+$envFile = __DIR__ . '/../.env';
+
+if (class_exists(Dotenv::class) && is_readable($envFile) && !is_dir($envFile)) {
+    (new Dotenv())->usePutenv()->load($envFile);
+}
+
+if (!isset($_SERVER['PROJECT_ROOT'])) {
+    $_SERVER['PROJECT_ROOT'] = dirname(__DIR__);
+}
+
+$input = new ArgvInput();
+$env = $input->getParameterOption(['--env', '-e'], $_SERVER['APP_ENV'] ?? 'prod', true);
+$debug = ($_SERVER['APP_DEBUG'] ?? ($env !== 'prod')) && !$input->hasParameterOption('--no-debug', true);
+
+if ($debug) {
+    umask(0000);
+
+    if (class_exists(Debug::class)) {
+        Debug::enable();
+    }
+}
+
+$pluginLoader = new ComposerPluginLoader($classLoader, null);
+
+$shopwareVersion = InstalledVersions::getVersion('shopware/core') . '@' . InstalledVersions::getReference('shopware/core');
+
+$kernel = new HttpKernel($env, $debug, $classLoader);
+$kernel->setPluginLoader($pluginLoader);
+
+$application = new Application($kernel->getKernel());
+$application->run($input);
